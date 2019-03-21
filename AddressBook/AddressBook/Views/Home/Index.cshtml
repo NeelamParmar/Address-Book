@@ -1,0 +1,502 @@
+﻿@{
+    ViewBag.Title = "Address Book";
+}
+
+<!-- Contact Contacts add update -->
+<div id="editContactsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="frmContacts" data-toggle="validator" novalidate="true">
+                    <div class="form-group">
+                        <input type="hidden" id="hfContactid" value="0"/>
+                        <label for="recipient-name" class="form-control-label">Contact number:</label>
+                        <input type="number" name="txtContactNumber" required="required" data-error="The contact number field is required." class="form-control" id="txtContactNumber" />
+                    </div>
+                    <button type="submit" class="btn btn-success" id="btnModalContactsSave">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Contact email add update -->
+<div id="editEmailModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="frmEmail" data-toggle="validator" novalidate="true">
+                    <div class="form-group">
+                        <input type="hidden" id="hfEmailid" value="0" />
+                        <label for="recipient-name" class="form-control-label">Email Address:</label>
+                        <input type="email" name="txtEmailAddress" required="required" data-error="The email address field is required." class="form-control" id="txtEmailAddress" />
+                    </div>
+                    <button type="submit" class="btn btn-success" id="btnModalEmailSave">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Contact view Modal -->
+<div id="viewModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="float:left;" class="modal-title"></h4>
+                &nbsp;<a class="btn btn-primary" id="btnEdit" href="javascript:void(0);"><i class="fa fa-pencil"></i>Update</a>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Name:</label>
+                        <label class="form-control" id="lblName"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Contacts:</label>
+                        <div id="divContacts"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Emails:</label>
+                        <div id="divEmails"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnDelete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Contact add/update Modal -->
+<div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="float:left;" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmContact" data-toggle="validator" novalidate="true">
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">First Name:</label>
+                        <input type="text" name="txtFirstName" required="required" data-error="The first name field is required." class="form-control" id="txtFirstName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-control-label">Last Name:</label>
+                        <input type="text" name="txtLastName" required="required" data-error="The last name field is required." class="form-control" id="txtLastName" />
+                    </div>
+                    <div class="form-group" id="divContactView">
+                        <label for="recipient-name" class="form-control-label">Contacts:</label>&nbsp;&nbsp;<input type="button" id="btnAddContact" class="btn btn-success" value="Add"/>
+                        <div id="divContacts"></div>
+                    </div>
+                    <div class="form-group" id="divAddressView">
+                        <label for="recipient-name" class="form-control-label">Emails:</label>&nbsp;&nbsp;<input type="button" id="btnAddAddress" class="btn btn-success" value="Add" />
+                        <div id="divEmails"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="btnModalSave">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BOX -->
+        <div class="box border green">
+            <div class="box-title">
+                <h4 style="float:left;"><i class="fa fa-book"></i>Address Book</h4>
+                
+                <a class="btn btn-success" id="btnAddNew" style="float:right;" href="javascript:void(0);"><i class="fa fa-plus-square"></i> Add New</a>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <input style="width:100%;max-width:100%;" type="text" id="txtSearch" placeholder="Search" class="form-control"/>
+                        </div>
+                        <div id="address-book">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /BOX -->
+    </div>
+</div>
+@section scripts
+    {
+    <script>
+        var currentContactId=0;
+        var currentContactDetails={};
+        var contacts = [];
+        var alphabets =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+        var apiUrl = '/api/Address/';
+        var trInstance;
+
+        $(document).ready(function () {
+            $('#txtSearch').keyup(function(){
+                //GetAllContacts($(this).val());
+                $('#address-book').html('');
+                CreateContacts($(this).val());
+                HandleSliderNav();
+            });
+
+            $(document).on({
+                'show.bs.modal': function () {
+                    var zIndex = 1040 + (10 * $('.modal:visible').length);
+                    $(this).css('z-index', zIndex);
+                    setTimeout(function() {
+                        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                    }, 0);
+                },
+                'hidden.bs.modal': function() {
+                    if ($('.modal:visible').length > 0) {
+                        // restore the modal-open class to the body element, so that scrolling works
+                        // properly after de-stacking a modal.
+                        setTimeout(function() {
+                            $(document.body).addClass('modal-open');
+                        }, 0);
+                    }
+                }
+            }, '.modal');
+
+            GetAllContacts();
+
+            $('#btnAddContact').click(function(){
+                ClearForm('editContactsModal');
+                $('#editContactsModal').modal('show');
+            });
+            $('#btnAddAddress').click(function(){
+                ClearForm('editEmailModal');
+                $('#editEmailModal').modal('show');
+            });
+
+            $(document).on('click','.deleteDetails',function(){
+                
+                var tr = $(this).closest('tr');
+                var id = $(tr).attr('id');
+                var type = $(tr).attr('type');
+                var details = $(tr).find('td:first').text();
+                $(tr).remove();
+                if(id>0)
+                {//delete from db
+                    var url = apiUrl + 'DeleteContactDetails?id='+id;
+                        
+                    AjaxGetWebAPI(url, function(data){
+                        var result = data;
+                        if(result.status==200)
+                        {
+                        }
+                        else{
+                            //handle error
+                        }
+                    }, function(data){
+                        alert(data);
+                    });
+                }
+            });
+            $(document).on('click','.editDetails',function(){
+                
+                var tr = $(this).closest('tr');
+                var id = $(tr).attr('id');
+                var type = $(tr).attr('type');
+                var details = $(tr).find('td:first').text();
+                trInstance = tr;
+                if(type==1)
+                {//contact number
+                    $('#hfContactid').val(id);
+                    $('#txtContactNumber').val(details);
+                    $('#editContactsModal').modal('show');
+                }
+                else{
+                    //email address
+                    $('#hfEmailid').val(id);
+                    $('#txtEmailAddress').val(details);
+                    $('#editEmailModal').modal('show');
+                }
+            });
+            $('#frmContacts').submit(function () {
+                if($(this).valid()){
+                    var url = apiUrl + 'SaveContactDetails?type=1&cid='+currentContactId+'&number='+$('#txtContactNumber').val()+'&id='+($('#hfContactid').val()==''?0:$('#hfContactid').val());
+                    AjaxGetWebAPI(url, function(data){
+                        var result = data;
+                        if(result.status==200)
+                        {
+                            $('#editContactsModal').modal('hide');
+                            
+                            if($('#hfContactid').val()!='' && $('#hfContactid').val()!='0')
+                                $(trInstance).remove();
+                            $('#divContacts table').append('<tr type="1" id="'+result.id+'"><td>'+$('#txtContactNumber').val()+'</td><td class="editDetails"><i class="fa fa-pencil"></i> edit</td><td class="deleteDetails"><i class="fa fa-trash"></i> delete</td></tr>');
+                        }
+                        else{
+                            //handle error
+                        }
+                    }, function(data){
+                        alert(data);
+                    });
+                }
+                return false;
+            });
+            $('#frmEmail').submit(function () {
+                if($(this).valid()){
+                    var url = apiUrl + 'SaveContactDetails?type=2&cid='+currentContactId+'&number='+$('#txtEmailAddress').val()+'&id='+($('#hfEmailid').val()==''?0:$('#hfEmailid').val());
+                    AjaxGetWebAPI(url, function(data){
+                        var result = data;
+                        if(result.status==200)
+                        {
+                            $('#editEmailModal').modal('hide');
+                            if($('#hfEmailid').val()!='' && $('#hfEmailid').val()!='0')
+                                $(trInstance).remove();
+
+                            $('#divEmails table').append('<tr type="2" id="'+result.id+'"><td>'+$('#txtEmailAddress').val()+'</td><td class="editDetails"><i class="fa fa-pencil"></i> edit</td><td class="deleteDetails"><i class="fa fa-trash"></i> delete</td></tr>');
+                        }
+                        else{
+                            //handle error
+                        }
+                    }, function(data){
+                        alert(data);
+                    });
+                }
+                return false;
+            });
+            $('#frmContact').submit(function () {
+                if($(this).valid()){
+                        var url = apiUrl + 'SaveContact?id='+currentContactId+'&FirstName='+$('#txtFirstName').val()+'&LastName='+$('#txtLastName').val();
+                        AjaxGetWebAPI(url, function(data){
+                            var result = data;
+                            if(result.status==200)
+                            {
+                                alert(result.data);
+                                $('#editModal').modal('hide');
+                                GetAllContacts();
+                            }
+                            else{
+                                //handle error
+                            }
+                        }, function(data){
+                            alert(data);
+                        });
+                }
+                return false;
+            });
+            
+            $('#btnAddNew').click(function(){
+                currentContactDetails={};
+                currentContactId=0;
+                ClearForm('editModal');
+                $('#divContactView,#divAddressView').hide();
+                $('#editModal .modal-title').html('Add New');
+                $('#editModal').modal('show');
+            });
+            $('#btnEdit').click(function(){
+                ClearForm('editModal');
+                $('#divContactView,#divAddressView').show();
+                $('#txtFirstName').val(currentContactDetails.firstName);
+                $('#txtLastName').val(currentContactDetails.lastName);
+                $('#editModal .modal-title').html(currentContactDetails.firstName+' '+currentContactDetails.lastName);
+
+                var contactItems ='';
+                var addressItems ='';
+
+                
+                $.each(currentContactDetails.data,function(i,e){
+                    if(e.Type==1)
+                        contactItems+='<tr type="'+e.Type+'" id="'+e.Id+'"><td>'+e.Details+'</td><td class="editDetails"><i class="fa fa-pencil"></i> edit</td><td class="deleteDetails"><i class="fa fa-trash"></i> delete</td></tr>';  
+                    else
+                        addressItems+='<tr type="'+e.Type+'" id="'+e.Id+'"><td>'+e.Details+'</td><td class="editDetails"><i class="fa fa-pencil"></i> edit</td><td class="deleteDetails"><i class="fa fa-trash"></i> delete</td></tr>';  
+                });
+
+                $('#editModal #divContacts').html('<table class="table table-bordered">'+contactItems+'</table>');
+                $('#editModal #divEmails').html('<table class="table table-bordered">'+addressItems+'</table>');
+
+                $('#editModal').modal('show');
+            });
+            $('#btnDelete').click(function(){
+                if(confirm('Are you sure you want to delete this contact? this action cannot be undone!'))
+                {
+                    //delete from db
+                    var url = apiUrl + 'DeleteContact?id='+currentContactId;
+                    AjaxGetWebAPI(url, function(data){
+                        var result = data;
+                        if(result.status==200)
+                        {
+                            alert(result.data);
+                            $('#viewModal').modal('hide');
+                            GetAllContacts();
+                        }
+                        else{
+                            //handle error
+                        }
+                    }, function(data){
+                        alert(data);
+                    });
+                }
+            });
+        });
+        function ClearForm(frm){
+            $("label.error").hide();
+            $(".error").removeClass("error");
+            $('#'+frm+' input[type=hidden]').val('');
+            $('#'+frm+' input[type=text]').val('');
+            $('#'+frm+' input[type=number]').val('');
+            $('#'+frm+' input[type=email]').val('');
+            $('#'+frm+' #divContacts').html('');
+            $('#'+frm+' #divEmails').html('');
+            $('#'+frm+' .modal-title').html('');
+        }
+        function GetAllContacts(search='') {
+            $('#address-book').html('');
+            var url = apiUrl + 'GetContacts?search='+search;
+            AjaxGetWebAPI(url, function(data){
+                var result = data;
+                if(result.status==200)
+                {
+                    contacts = result.data;
+                    CreateContacts();
+                    HandleSliderNav();
+                }
+                else{
+                    //handle error
+                }
+            }, function(data){
+                alert(data);
+            });
+        }
+            function CreateContacts(search=''){
+                console.log(search);
+                var contactItem='<div class="slider-content"><ul>';
+                $.each(alphabets,function(i, e){
+                    
+                    var items = $.grep(contacts, function(ee, ii){
+                        return (ee.FirstName.toLowerCase().substring(0,1)).indexOf(e.toLowerCase()) > -1;
+                    });
+
+
+                    if(items.length == 0 && search.length > 0)
+                        return;
+
+                    if(search.length > 0)
+                    {
+                        items = $.grep(items, function(ee,ii){
+                            return  (ee.FirstName+ ' '+ee.LastName).toLowerCase().indexOf(search) > -1;
+                        });
+                        if(items.length==0)
+                            return;
+                    }
+                    contactItem += '<li id="'+e.toLowerCase()+'"><a name="'+e.toLowerCase()+'" class="title">'+e+'</a>';
+                    contactItem +='<ul>';
+                   
+                    $.each(items,function(ii,ee){
+                        contactItem +='<li><a data="'+ee.Id+'" href="/">'+ee.FirstName+' '+ee.LastName+'</a></li>';
+                    });
+                    contactItem +='</ul><li>';
+                    
+                });
+                contactItem+='</ul></div>';
+                $('#address-book').html(contactItem);
+            }
+            var HandleSliderNav = function () {
+                $('#address-book').sliderNav();
+
+                $('#address-book .slider-content ul li ul li a').click(function (e) {
+                    e.preventDefault();
+                    ClearForm('viewModal');
+                    //Get the name clicked on
+                    var name = $(this).text();
+                    var id = $(this).attr('data');
+                    currentContactId = id;
+                    //Set the name
+                    $('#viewModal .modal-title').html(name);
+                    $('#viewModal #lblName').text(name);
+                    $('#divContacts').html('');
+                    $('#divEmails').html('');
+                    //Get contact contacts and addresses
+                    GetContactDetails(id);
+
+                    $('#viewModal').modal('show');
+                });
+            }
+
+            function GetContactDetails(id) {
+                var url = apiUrl + 'GetContactDetails?id='+id;
+                AjaxGetWebAPI(url, function(data){
+                    var result = data;
+                    if(result.status==200)
+                    {
+                        currentContactDetails = result;
+                       $.each(result.data,function(i,e){
+                           switch(e.Type){
+                               case 1:
+                                   $('#divContacts').append('<span>'+e.Details+'</span><br/>');
+                                   break;
+                               case 2:
+                                   $('#divEmails').append('<span>'+e.Details+'</span><br/>');
+                                   break;
+                           }
+                       });
+                    }
+                    else{
+                        //handle error
+                    }
+                }, function(data){
+                    alert(data);
+                });
+            }
+            function AjaxPostWebAPI(url, parameterOptions, success, failure) {
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    async: true,
+                    data: parameterOptions,
+                    success: function (data) {
+                        success(data);
+                    },
+                    error: function (data) {
+                        failure(data);
+                    }
+                });
+            }
+            function AjaxGetWebAPI(url, success, failure) {
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    async: true,
+                    success: function (data) {
+                        success(data);
+                    },
+                    error: function (data) {
+                        failure(data);
+                    }
+                });
+            }
+    </script>
+}

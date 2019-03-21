@@ -1,0 +1,87 @@
+﻿body {
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/*Index css*/
+ .box.border.green {
+        border: 1px solid #9db36a;
+    }
+
+        .box.border.green > .box-title {
+            color: #FFFFFF !important;
+            background-color: #7ba3bc;
+            border-bottom: 1px solid #7ba3bc;
+            height: 50px;
+        }
+
+    .box.border > .box-title, .box.solid > .box-title {
+        padding: 8px 10px 2px;
+        border-bottom: 1px solid #c4c4c4;
+        min-height: 30px;
+        background-color: #dbdbdb;
+        border-radius: 4px 4px 0 0;
+        margin-bottom: 0;
+    }
+
+    .box .box-title {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #c4c4c4;
+        min-height: 30px;
+    }
+
+    .box.border .box-body, .box.solid .box-body {
+        border-radius: 0 0 4px 4px;
+        padding: 10px;
+        background-color: #FFFFFF;
+    }
+
+    .box.border, .box.solid {
+        border: 1px solid #c4c4c4;
+        border-radius: 4px;
+    }
+
+    .box {
+        clear: both;
+        margin-top: 0px;
+        margin-bottom: 25px;
+        padding: 0px;
+    }
+
+    * {
+        outline: medium none !important;
+    }
+
+        *, *::before, *::after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+label.error {
+color:red;
+}
+.editDetails, .deleteDetails {
+    cursor:pointer;
+}
